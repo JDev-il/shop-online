@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-md navbar-light mainAppMenu">
+    <a
+      class="navbar-brand"
+      >JDCommerce</a
+    >
+    <button
+      class="navbar-toggler d-lg-none"
+      type="button"
+      data-toggle="collapse"
+      data-target="#collapsibleNavId"
+      aria-controls="collapsibleNavId"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars fa-1x"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+      <ul class="navbar-nav ml-auto mt-2 mt-md-0">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="fas fa-user-circle mt-2 mt-md-0"></i>
+            {{ firstname }}
+          </a>
+          <div class="dropdown-menu shadow-sm" aria-labelledby="navbarDropdown" id="customerDropdown">
+            <a
+              class="nav-link"
+              [routerLink]="['/']"
+              routerLinkActive="router-link-active"
+              (click)="removeToken()"
+              >Logout</a
+            >
+            <!-- <div class="dropdown-divider"></div>
+            <a
+              class="nav-link"
+              [routerLink]="['/']"
+              routerLinkActive="router-link-active"
+              (click)="removeToken()"
+              >Logout</a
+            > -->
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  

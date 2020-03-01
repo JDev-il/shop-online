@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-md navbar-light mainAppMenu">
+    <a
+      class="navbar-brand"
+      [routerLink]="['/']"
+      routerLinkActive="router-link-active"
+      >JDCommerce</a>
+    <button
+      class="navbar-toggler d-lg-none"
+      type="button"
+      data-toggle="collapse"
+      data-target="#collapsibleNavId"
+      aria-controls="collapsibleNavId"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars fa-1x"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+      <ul class="navbar-nav ml-auto mt-2 mt-md-0">
+      <a
+        class="nav-link"
+        [routerLink]="['/']"
+        routerLinkActive="router-link-active"
+        >Login</a>
+      </ul>
+      <!-- <form class="form-inline ml-auto my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" />
+        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
+          Search
+        </button>
+      </form> -->
+    </div>
+  </nav>
+
+  

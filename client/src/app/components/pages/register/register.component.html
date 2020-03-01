@@ -1,0 +1,167 @@
+<app-registernav></app-registernav>
+<div class="jumbotron jumbotron-fluid text-center jumboMain">
+  <h1>New Customer Registration</h1>
+</div>
+<div class="container">
+  <div class="col-md-8 col-lg-6 mx-auto">
+    <div class="alert alert-warning" role="alert" *ngIf="show">
+      Already have an account?
+      <a [routerLink]="['/']" routerLinkActive="router-link-active"
+        >Login now!</a
+      >
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <form
+      #regForm="ngForm"
+      (ngSubmit)="onSubmit(regForm.value)"
+      (keyup)="showHideLoginNow(regForm.value)"
+    >
+      <!-- STEP 1 -->
+      <div [hidden]="step2">
+          <div class="form-group">
+        <label for="idnumber">ID Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="idnumber"
+          required
+          [(ngModel)]="regForm.idnumber"
+          name="idnumber"
+          (keyup)="keyCheck(regForm.value)"
+          pattern="^[0-9]*$"
+        />
+        <div [hidden]="!id" class="alert alert-danger">
+          * Please fill ID field (numbers only)!
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="text"
+          class="form-control"
+          id="email"
+          required
+          [(ngModel)]="regForm.email"
+          name="email"
+          #emailAddress="ngModel"
+          (keyup)="keyCheck(regForm.value, emailAddress.invalid)"
+          pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+          [class.is-invalid]="emailAddress.invalid && emailAddress.touched"
+        />
+        <div *ngIf="emailAddress.errors && (emailAddress.touched)" class="alert alert-danger">
+          * Please enter a valid email-address!
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="text"
+          class="form-control"
+          id="password"
+          required
+          [(ngModel)]="regForm.password"
+          name="password"
+          (keyup)="keyCheck(regForm.value)"
+        />
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="text"
+          class="form-control"
+          id="confirmPassword"
+          required
+          [(ngModel)]="regForm.confirmPassword"
+          name="confirmPassword"
+          (keyup)="keyCheck(regForm.value)"
+          [ngStyle]="styleCheck(regForm.value)"
+        />
+      </div>
+      <div class="form-group mt-4">
+        <button [disabled]="!nextstep || emailAddress.errors" type="button" class="btn btn-secondary btn-sm" (click)="nextStep(regForm.value)">Next Step</button>
+      </div>
+      <div class="alert alert-danger" role="alert" [hidden]="err2">
+          {{ step2err }}
+        </div>
+    </div>
+
+      <!-- STEP 2 -->
+      
+    <div [hidden]="!step2">
+      <div class="form-group">
+        <label for="city">City</label>
+        <select
+          type="select"
+          class="form-control"
+          required
+          [(ngModel)]="regForm.city"
+          name="city"
+        >
+          <option>-- Select City --</option>
+          <option
+            *ngFor="let city of cities | slice: 1; let i = index"
+            (keyup)="keyCheck(regForm.value)"
+            >{{ city.engName | titlecase }}</option
+          >
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="street">Street</label>
+        <input
+          type="text"
+          class="form-control"
+          id="street"
+          required
+          [(ngModel)]="regForm.street"
+          name="street"
+          (keyup)="keyCheck(regForm.value)"
+        />
+      </div>
+      <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstname"
+          required
+          [(ngModel)]="regForm.firstname"
+          name="firstname"
+          (keyup)="keyCheck(regForm.value)"
+          pattern="[^\s\0-9]*"
+        />
+      </div>
+      <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastname"
+          required
+          [(ngModel)]="regForm.lastname"
+          name="lastname"
+          (keyup)="keyCheck(regForm.value)"
+          pattern="[^\s\0-9]*"
+        />
+      </div>
+      <div class="form-group mt-4">
+        <button
+          id="nextStep"
+          type="submit"
+          class="btn btn-register"
+          [disabled]="!regForm.form.valid"
+        >
+          Register
+        </button>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>

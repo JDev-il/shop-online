@@ -1,0 +1,26 @@
+.btn-register{
+    background: rgba(9, 87, 255, 0.838);
+    color: white;
+}
+
+a {
+    color: #006bde!important
+}
+
+.jumboMain {
+    background: rgba(255, 206, 9, 0.516);
+}
+
+.jumboMain h1 {
+    font-weight: 400;
+    font-size: 6vh;
+}
+
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}

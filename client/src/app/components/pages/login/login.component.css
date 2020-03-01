@@ -1,0 +1,48 @@
+/* .btn-customer{
+    background: rgba(255, 206, 9, 0.838);
+    color: rgba(0, 0, 0, 0.81)
+} */
+
+
+a {
+    color: #006bde!important
+}
+
+.jumboMain {
+    background: rgba(255, 206, 9, 0.516);
+}
+
+.jumboMain h1 {
+    font-weight: 400;
+    font-size: 6vh;
+}
+
+.eye {
+    border-radius: .25rem;
+}
+
+
+#aboutCustomerPage{
+    background: linear-gradient( rgba(23, 163, 184, 0.269), rgba(23, 163, 184, 0.075));
+    padding-top: 30px;
+    height: 30vh;
+    width: 50vh;
+    border-radius: 2vh;
+    transition: all .5s;
+    transition-delay: 70ms;
+    text-align: center;
+    box-shadow: 0px 1px 3px 1px #ededed;
+}
+
+#aboutCustomerPage:hover{
+border-radius: 2vh;
+box-shadow: 0px 1px 12px 1px #888888;
+transition: all .5s;
+transition-delay: 70ms;
+}
+
+.carousel-item{
+    height: 20vh;
+}
+
+

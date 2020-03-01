@@ -1,0 +1,17 @@
+#pleaseWaitPage {
+    background: rgba(255, 206, 9, 0.516);
+    height: 100vh
+}
+
+#pleaseWait {
+    text-align: center;
+    padding-top: 30vh;
+}
+
+#pleaseWait h1{
+    font-size: 7vh;
+}
+
+#pleaseWait h2{
+    font-size: 4vh;
+}

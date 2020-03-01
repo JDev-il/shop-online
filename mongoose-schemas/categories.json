@@ -1,0 +1,9 @@
+{"_id":{"$oid":"5ddfcc372e7a5940b2f61f52"},"category":"Diary"}
+{"_id":{"$oid":"5ddfcc432e7a5940b2f61f53"},"category":"Meat"}
+{"_id":{"$oid":"5ddfcc7f2e7a5940b2f61f54"},"category":"Bread/Bakery"}
+{"_id":{"$oid":"5ddfcca92e7a5940b2f61f55"},"category":"Beverages"}
+{"_id":{"$oid":"5ddfccb72e7a5940b2f61f56"},"category":"Cleaners"}
+{"_id":{"$oid":"5ddfcce92e7a5940b2f61f57"},"category":"Pharmacy"}
+{"_id":{"$oid":"5de653466f7c634f2e247178"},"category":"Fruits"}
+{"_id":{"$oid":"5de653546f7c634f2e247179"},"category":"Vegetables"}
+{"_id":{"$oid":"5e20e007492b642da180e7e1"},"category":"Other"}

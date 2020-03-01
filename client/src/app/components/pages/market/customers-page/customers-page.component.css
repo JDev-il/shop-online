@@ -1,0 +1,124 @@
+.jumboMain{
+    background:rgba(23, 163, 184, 0.269);
+}
+
+#cartTable{
+    /* background: linear-gradient( rgba(23, 163, 184, 0.112), rgba(23, 163, 184, 0.029)); */
+    padding-top: 3vh;
+    border-radius: 0.5vh;
+}
+
+/* #cartTable:hover{ */
+    /* background: linear-gradient( rgba(23, 163, 184, 0.269), rgba(23, 163, 184, 0.084));
+    padding-top: 30px;
+    padding-bottom: 30px;
+    height: fit-content;
+    width: 50vh;
+    border-radius: 0.5vh;
+box-shadow: 0px 1px 12px 1px #888888;
+transition: all .5s;
+transition-delay: 70ms; */
+/* } */
+
+
+table{
+    border-radius: 0.5vh !important;
+    transition: all .3s !important;
+    /* box-shadow: 0px 0px px 0px #888888; */
+    transition-delay: 30ms !important;
+}
+
+table:hover{
+    border-radius: 0.5vh !important;
+    transition: all .3s !important;
+    box-shadow: 0px 0px 8px 1px #888888 !important;
+    transition-delay: 30ms !important;
+}
+
+table {
+    background: rgba(255, 243, 196, 0.694)
+}
+
+tr, td, th {border: transparent }
+
+
+
+#tableRow .btn{
+    transition: all .3s !important;
+    transition-delay: 50ms !important;
+}
+
+#tableRow .btn:hover{
+    transition: all .3s !important; 
+    box-shadow: 0px 1px 3px 1px #888888 !important;
+    transition-delay: 50ms !important;
+}
+
+
+
+#productModal{
+    background: linear-gradient( rgba(255, 206, 9, 0.851), rgba(255, 206, 9, 0.687));
+}
+#addToCartModalTitle{
+    margin-top: 3vh;
+    text-align: center !important
+}
+
+#quantity{
+    width: 30vh
+}
+
+input[type=number]{
+    width: 13vh;
+} 
+
+.md-form{
+        position: relative;
+        margin-bottom: 2vh;
+}
+
+
+.md-form input:not([type]), .md-form input[type="text"]:not(.browser-default) {
+    box-sizing: content-box !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid #ced4da !important;
+    border-radius: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    transition: border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out,-webkit-box-shadow 0.15s ease-in-out !important;
+}
+
+.md-form .form-control {
+    padding: .6rem 0 .4rem 0 !important;
+    background-color: transparent !important;
+
+    height: calc(1.5em + 0.75rem + 2px) !important;
+    line-height: 1.5 !important;
+    color: #495057 !important;
+    background-clip: padding-box !important;
+    border: 1px solid #ced4da !important;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+}
+
+.md-form label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1rem;
+    color: #b1b1b1;
+    cursor: text;
+    /* -webkit-transition: color .2s ease-out, -webkit-transform .2s ease-out;
+    transition: color .2s ease-out, -webkit-transform .2s ease-out;
+    transition: transform .2s ease-out, color .2s ease-out; */
+    /* transition: transform .3s ease-out, color .3s ease-out, -webkit-transform .3s ease-out; */
+    transform: translateY(12px);
+    /* -webkit-transform-origin: 0% 100%; */
+    transform-origin: 0% 100%;
+    transition: all 0.2s;
+}
+
+.md-form label.active {
+ transform: translateY(-10px) scale(0.8);
+ transition: all 0.5s;
+}

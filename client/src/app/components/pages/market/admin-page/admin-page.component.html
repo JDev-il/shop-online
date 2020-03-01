@@ -1,0 +1,291 @@
+<app-adminnav></app-adminnav>
+<div class="jumbotron jumbotron-fluid text-center jumboMain">
+  <h1>Welcome {{ firstname }}!</h1>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-inline">
+        <div class="my-2 mx-1">
+          <button
+            class="btn btn-info"
+            (click)="showProductForm()"
+            [disabled]="disableEnableBtn"
+          >
+            <i class="fas fa-plus"></i> Add Product
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="card text-info text-center pt-2 mt-2 productBox shadow-sm"
+        [hidden]="hideProductDetails"
+      >
+        <div class="card-body" *ngIf="!productShow; else PRODUCT">
+          <h5>No Product Was Chosen</h5>
+        </div>
+      </div>
+
+      <div class="card p-1 productBox shadow-sm" [hidden]="hideProductForm">
+        <form
+          class="form-group"
+          #addProductForm="ngForm"
+          (keyup)="allValues(addProductForm.value)"
+          (ngSubmit)="
+            onSubmit(addProductForm.value); addProductForm.resetForm()
+          "
+        >
+          <div class="from-group mt-2">
+            <label for="productName">Product Name</label>
+            <input
+              id="productName"
+              class="form-control"
+              type="text"
+              required
+              placeholder="Product Name"
+              [(ngModel)]="addProductForm.productName"
+              name="productName"
+            />
+          </div>
+          <div class="from-group mt-2">
+            <label for="category">Category</label>
+            <select
+              id="category"
+              class="form-control"
+              type="select"
+              [(ngModel)]="addProductForm.category"
+              name="category"
+              required
+              pattern="^(?!(--Category--)$).+$"
+            >
+              <option>--Category--</option>
+              <option
+                *ngFor="let category of categories"
+                [value]="category._id"
+                >{{ category.category }}</option
+              >
+            </select>
+          </div>
+          <div class="from-group mt-2">
+            <label for="productPrice">Product Price</label>
+            <input
+              id="productPrice"
+              required
+              class="form-control"
+              type="text"
+              placeholder="Price in $"
+              [(ngModel)]="addProductForm.productPrice"
+              name="productPrice"
+              pattern="^[0-9]*$"
+            />
+          </div>
+          <div class="text-center form-group mt-4">
+            <button
+              type="submit"
+              class="btn btn-success btn-sm"
+              [disabled]="!addProductForm.form.valid || uploadButton != true"
+            >
+              Add Product
+            </button>
+          </div>
+        </form>
+
+        <hr />
+
+        <form
+          class="form-group"
+          #uploadImageForm="ngForm"
+          (ngSubmit)="
+            uploadImage(uploadImageForm.value); uploadImageForm.resetForm()
+          "
+          enctype="multipart/form-data"
+        >
+          <div class="from-group mt-2">
+            <div class="alert alert-danger" role="alert" [hidden]="reminder">
+              {{ reminderMsg }}
+            </div>
+            <label for="productImage">Image:</label>
+            <input
+              style="display: none"
+              class="btn form-control"
+              type="file"
+              (change)="onFileChanged($event)"
+              #fileInput
+              id="productImage"
+              name="productImage"
+              accept="image/*"
+            />
+            <br />
+            <img *ngIf="imageTarget" class="img-fluid" [src]="imageTarget" />
+            <br />
+            <div class="text-center">
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm my-1 mx-1 mt-1"
+              (click)="fileInput.click()"
+            >
+              Browse Image
+            </button>
+            <button
+              type="submit"
+              class="btn btn-info btn-sm my-1 mx-1 mt-1"
+              [disabled]="!imageTarget"
+            >
+              Upload Image
+            </button>
+          </div>
+          </div>
+        </form>
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="cancelAdd(); addProductForm.resetForm()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="mx-auto col-md-9 row">
+      <div
+        class="card col-sm-3 mt-2"
+        *ngFor="let product of marketProducts"
+        [hidden]="productsInHtml"
+      >
+        <a (click)="showProductFunc(product._id)">
+          <img
+            class="card-img-top"
+            src="http://localhost:3000/public/uploads/{{ product.product_img }}"
+            alt="Card image"
+          />
+          <div class="card-body">
+            <h4 class="card-title text-center">{{ product.productName }}</h4>
+            <p class="card-text text-center">
+              Our Price: <span style="color: green">${{ product.price }}</span>
+            </p>
+          </div>
+        </a>
+      </div>
+      <div [hidden]="noProducts" class="mx-auto mt-2">
+        <h4 class="text-center">No products were found..</h4>
+        <p class="text-center">Please add a new product</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #PRODUCT>
+  <h4 class="text-center mt-2"><u>Edit Product:</u></h4>
+  <div class="mt-3 mb-3">
+    <form
+      class="form-group p-1"
+      #editProductForm="ngForm"
+      (ngSubmit)="updateProduct(editProductForm.value)"
+      (keyup)="checkValues(editProductForm.value)"
+      enctype="multipart/form-data"
+    >
+      <div class="form-group">
+        <label for="productNameEdit"
+          ><u>Name:</u> {{ productShow[0].productName }}</label
+        >
+        <input
+          class="form-control"
+          type="text"
+          [value]="productShow[0].productName"
+          id="productNameEdit"
+          [(ngModel)]="editProductForm.productNameEdit"
+          name="productNameEdit"
+          pattern="^[a-zA-Z]*$"
+          placeholder="Leave blank to keep {{ productShow[0].productName }}"
+        />
+      </div>
+      <div class="form-group mt-2">
+        <label for="productSerialEdit"><u>Serial Number:</u></label>
+        <input
+          class="form-control"
+          type="text"
+          id="productSerialEdit"
+          [(ngModel)]="editProductForm.productSerialEdit"
+          name="productSerialEdit"
+          [disabled]="true"
+          placeholder="{{ productShow[0]._id }}"
+        />
+      </div>
+      <div class="form-group mt-2">
+        <label for="productPriceEdit"
+          ><u>Price:</u> ${{ productShow[0].price }}</label
+        >
+        <input
+          class="form-control"
+          type="text"
+          pattern="^[0-9]*$"
+          id="productPriceEdit"
+          [(ngModel)]="editProductForm.productPriceEdit"
+          name="productPriceEdit"
+          placeholder="Leave blank to keep ${{ productShow[0].price }}"
+        />
+      </div>
+      <div class="form-group mt-2">
+        <label for="productImageEdit"
+          ><u>Image Name:</u> {{ productShow[0].product_img }}</label
+        >
+        <input
+          style="display: none"
+          class="btn form-control"
+          type="file"
+          (change)="editFile($event)"
+          #fileEdit
+          id="productImageEdit"
+          name="productImageEdit"
+          accept="image/*"
+        />
+        <br />
+        <img
+          class="img-fluid mt-1"
+          [src]="imageEditUrl"
+          title="JDCommerce-{{ productShow[0].product_img }}"
+        />
+        <button
+          type="button"
+          class="btn btn-secondary btn-sm mt-2"
+          (click)="fileEdit.click()"
+        >
+          Change Image
+        </button>
+      </div>
+      <div class="form-group mt-2">
+        <label for="productCategoryEdit"
+          ><u>Category:</u> {{ defaultProductValues.categoryName }}</label
+        >
+        <select
+          id="productCategoryEdit"
+          class="form-control"
+          type="select"
+          [(ngModel)]="editProductForm.productCategoryEdit"
+          name="productCategoryEdit"
+        >
+          <option *ngFor="let category of categories" [value]="category._id">{{
+            category.category
+          }}</option>
+        </select>
+      </div>
+      <div class="form-group mt-2">
+        <button type="submit" class="btn btn-success btn-sm">
+          Save Changes
+        </button>
+      </div>
+    </form>
+  </div>
+  <button class="btn btn-danger" (click)="clearProduct()">Clear Product</button>
+</ng-template>
+
+<ng-template #IFNOPRODUCT>
+  <p>No data was found..</p>
+</ng-template>
+
+<ng-template>
+  <img
+    class="img-fluid mt-1"
+    [src]=""
+    title="JDCommerce-{{ productShow[0].product_img }}"
+  />
+</ng-template>

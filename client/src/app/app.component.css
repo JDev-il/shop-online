@@ -1,0 +1,20 @@
+body {
+    height: 100vh; 
+}
+
+.loginPage {
+    vertical-align: middle !important;
+}
+
+#row-login-register {
+    margin-top: 15vh
+}
+
+#jumboMain {
+    background: rgba(255, 206, 9, 0.516);
+}
+
+#jumboMain h1 {
+    font-weight: 400;
+    font-size: 6vh;
+}

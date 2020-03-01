@@ -1,0 +1,19 @@
+.mainAppMenu {
+    background: rgba(255, 206, 9, 0.838);
+}
+
+#customerDropdown {
+    background: rgba(255, 206, 9, 1);
+}
+
+#customerDropdown a{
+    text-align: center;
+    padding-right: 50px !important
+}
+
+@media only screen and (max-width: 960px) {
+    #customerDropdown a{
+        text-align: center;
+        padding-right: 0px
+    }   
+}

@@ -1,0 +1,151 @@
+<app-loginnav></app-loginnav>
+<div class="jumbotron jumbotron-fluid text-center jumboMain">
+  <h1>Welcome To JDCommerce!</h1>
+</div>
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-6 mx-auto mb-3" id="aboutCustomerPage">
+      <h4>Did you know?</h4>
+      <div
+        id="carouselExampleIndicators"
+        class="carousel slide"
+        data-ride="carousel"
+        data-interval="3500"
+      >
+        <div class="carousel-inner text-center">
+          <div class="carousel-item active">
+            <p>
+              <span [style.font-weight]="600">JDCommerce</span> offers a
+              one-stop-shop experience!
+            </p>
+            <p>
+              Anytime, anywhere!
+            </p>
+          </div>
+          <div class="carousel-item">
+            <p>
+              You can choose, order and ship from a large varity of goods &
+              products 24/7!
+            </p>
+            <p>Order today!</p>
+          </div>
+          <div class="carousel-item">
+            <p>
+              <span [style.font-weight]="600">JDCommerce</span> operates in more
+              than 30 cities in Israel - with free shipping!
+            </p>
+            <p>Don't compromise for less!</p>
+          </div>
+        </div>
+        <ol class="carousel-indicators">
+          <li
+            data-target="#carouselExampleIndicators"
+            data-slide-to="0"
+            class="active"
+            class="bg-warning"
+          ></li>
+          <li
+            data-target="#carouselExampleIndicators"
+            data-slide-to="1"
+            class="bg-warning"
+          ></li>
+          <li
+            data-target="#carouselExampleIndicators"
+            data-slide-to="2"
+            class="bg-warning"
+          ></li>
+        </ol>
+      </div>
+    </div>
+    <div class="col-md-6 mx-auto mb-2" id="customerPageAvailability">
+      <h4 class="text-center">
+        <span style="color: green">Products</span> in our store:
+      </h4>
+      <div class="text-center">
+        <div class="mb-2 mt-2">
+          <p>
+            <span style="color: green">{{ productsCounter }}</span> products!
+          </p>
+        </div>
+      </div>
+      <hr />
+      <h4 class="text-center">
+        <span class="text-warning">Orders</span> submited so far:
+      </h4>
+      <div class="text-center">
+        <div class="mb-2 mt-2">
+          <p>
+            <span class="text-warning">{{ ordersCounter }}</span> orders!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 mx-auto mb-5 mt-4">
+    <div class="alert alert-primary" role="alert" *ngIf="showHideSignUp">
+      Don't have an account yet?
+      <a [routerLink]="['/register']" routerLinkActive="router-link-active"
+        >Sign up now!</a
+      >
+    </div>
+    <div class="mt-2" *ngIf="requiredIf == false; else VALID"></div>
+    <form
+      #logForm="ngForm"
+      (ngSubmit)="onSubmit(logForm.value)"
+      (keyup)="determineCusOrAd(logForm.value)"
+    >
+      <div class="alert alert-danger" role="alert" *ngIf="err">
+        {{ logErr }}
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          name="email"
+          id="email"
+          required
+          class="form-control"
+          [(ngModel)]="logForm.email"
+          placeholder="Email Address"
+          (keyup)="valueCheck(logForm.value)"
+          pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          name="password"
+          id="password"
+          required
+          class="form-control"
+          [(ngModel)]="logForm.password"
+          placeholder="Password"
+          (keyup)="valueCheck(logForm.value)"
+        />
+      </div>
+      <div class="form-group">
+        <button
+          type="submit"
+          [disabled]="!logForm.valid || !determine"
+          class="btn btn-block"
+          [style.background-color]="adminBtnStyle"
+        >
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" [hidden]="!loginBtnLoader"></span>
+          {{ loginBtn }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--=====================================
+=               ng-templates            =
+======================================-->
+
+<!-- ALERT INVALID -->
+<!-- <ng-template #VALID>
+    <div class="alert alert-success" role="alert">You can now try and login!</div>
+</ng-template> -->
+<!-- ALERT INVALID -->
+
+<!--=======  End ng-templates ========-->

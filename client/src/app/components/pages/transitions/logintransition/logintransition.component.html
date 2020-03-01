@@ -1,0 +1,15 @@
+<div class="container-fluid" id="loginTransition">
+    <div class="container" id="loginWait" [hidden]="!hideCustomer">
+      <h1>Good to have you back {{firstname}}!</h1>
+      <h2 class="mt-2">Enjoy your shopping at <span style="color: #17a2b8">JDCommerce Store..</span></h2>
+      <div class="spinner-grow text-info mt-4" role="status">
+      </div>
+    </div>
+
+    <div class="container" id="loginWait" [hidden]="!hideAdmin">
+        <h1>Welcome back {{firstname}}!</h1>
+        <h2 class="mt-2">Loading <span style="color: #17a2b8">JDCommerce Admin Page..</span></h2>
+        <div class="spinner-grow text-info mt-4" role="status">
+        </div>
+      </div>
+  </div>

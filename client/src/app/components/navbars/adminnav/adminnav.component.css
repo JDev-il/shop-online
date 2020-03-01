@@ -1,0 +1,11 @@
+.mainAppMenu {
+    background: rgba(255, 206, 9, 0.838);
+}
+
+#adminDropdown {
+    background: rgba(255, 206, 9, 1);
+}
+
+#adminDropdown a{
+    text-align: center;
+}
